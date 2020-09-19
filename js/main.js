@@ -1,11 +1,17 @@
 $(function () {
-
   $('.partners-slider').slick({
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 1,
     prevArrow: '<button class="slick-btn slick-btn__prev"><img class="slick-btn__prev-img" src="img/arrow-left-red.svg" alt="" ></button>',
     nextArrow: '<button class="slick-btn slick-btn__next"><img class="slick-btn__next-img" src="img/arrow-right-red.svg" alt="" > </button>',
+    responsive: [{
+      breakpoint: 800,
+      settings: {
+        slidesToShow: 1,
+
+      }
+    }]
   });
 
 
@@ -17,6 +23,12 @@ $(function () {
     slidesToScroll: 1,
     prevArrow: '<button class="slick-btn slick-btn__prev"><img class="slick-btn__prev-img" src="img/arrow-left-white.svg" alt="" ></button>',
     nextArrow: '<button class="slick-btn slick-btn__next"><img class="slick-btn__next-img" src="img/arrow-right-white.svg" alt="" > </button>',
+    responsive: [{
+      breakpoint: 800,
+      settings: {
+        slidesToShow: 1,
+      }
+    }]
   });
 
   $('.skils-slider_descr').slick({
@@ -27,6 +39,13 @@ $(function () {
     prevArrow: '<button class="slick-btn slick-btn__prev"><img class="slick-btn__prev-img" src="img/arrow-left-white.svg" alt="" ></button>',
     nextArrow: '<button class="slick-btn slick-btn__next"><img class="slick-btn__next-img" src="img/arrow-right-white.svg" alt="" > </button>',
     asNavFor: '.skils-slider_logo',
+    responsive: [{
+      breakpoint: 800,
+      settings: {
+        slidesToShow: 1,
+
+      }
+    }]
   });
 
 
@@ -49,6 +68,13 @@ $(function () {
     slidesToScroll: 1,
     prevArrow: '<button class="slick-btn slick-btn__prev"><img class="slick-btn__prev-img" src="img/arrow-left-red.svg" alt="" ></button>',
     nextArrow: '<button class="slick-btn slick-btn__next"><img class="slick-btn__next-img" src="img/arrow-right-red.svg" alt="" > </button>',
+    responsive: [{
+      breakpoint: 800,
+      settings: {
+        slidesToShow: 1,
+
+      }
+    }]
   });
 
   $('.scheme-item:eq(0)').hover(function () {
@@ -176,7 +202,48 @@ $(function () {
       });
     }
   );
+  wow = new WOW({
+    boxClass: 'wow', // default
+    animateClass: 'animate__animated', // default
+    mobile: false,
+  });
+  wow.init();
 
 
+  if ($(window).width() < 600) {
+    $('.wow').removeClass('animate__animated');
+
+  };
+
+  $(document).ready(function () {
+    $('.btn-modal').magnificPopup();
+  });
+
+  $(document).ready(function () {
+    var groups = {};
+    $('.galleryItem').each(function () {
+      var id = parseInt($(this).attr('data-group'), 10);
+
+      if (!groups[id]) {
+        groups[id] = [];
+      }
+
+      groups[id].push(this);
+    });
+
+
+    $.each(groups, function () {
+
+      $(this).magnificPopup({
+        closeOnContentClick: true,
+        closeBtnInside: false,
+        gallery: {
+          enabled: true
+        }
+      })
+
+    });
+
+  });
 
 });
